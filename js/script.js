@@ -20,7 +20,20 @@ function criarCobrinha(){
     }
 }
 
+document.addEventListener("keydown", update);
+
+function update (event){
+    if(event.keyCode == 37 && direct != "right") direct = "left";
+    if(event.keyCode == 38 && direct != "down") direct = "up";
+    if(event.keyCode == 39 && direct != "left") direct = "right";
+    if(event.keyCode == 40 && direct != "up") direct = "down";
+}
+
 function iniciarJogo(){
+    if(snake[0].x > 15 * box && direct == "right") snake[0].x = 0;
+    if(snake[0].x < 0 && direct == "left") snake[0].x = 16 * box;
+    if(snake[0].y > 15 * box && direct == "down") snake[0].y = 0;
+    if(snake[0].y < 0 && direct == "up") snake[0].y = 16 * box;
     criarBG();
     criarCobrinha();
 
